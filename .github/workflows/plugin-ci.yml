@@ -364,7 +364,7 @@ jobs:
           python3 - <<'PY'
           import re, glob, os, sys, pathlib
           root = "templates/project-scaffold/website"
-          ex = pathlib.Path(f"{root}/.env.local.example")
+          ex = pathlib.Path(f"{root}/.env.local")
           if not ex.exists():
               print(f"{ex} is missing — it is the authoritative env list"); sys.exit(1)
           documented = set(re.findall(r'^([A-Z][A-Z0-9_]*)=', ex.read_text(), re.M))
@@ -376,7 +376,7 @@ jobs:
           runtime = {"NODE_ENV"}          # set by the runtime, never by the operator
           missing = sorted(set(used) - documented - runtime)
           if missing:
-              print("read by the app but absent from .env.local.example:")
+              print("read by the app but absent from .env.local:")
               for v in missing:
                   print(f"  {v}  ({', '.join(sorted(used[v]))})")
               sys.exit(1)

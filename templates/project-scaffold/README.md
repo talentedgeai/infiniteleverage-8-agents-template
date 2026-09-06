@@ -13,18 +13,9 @@ commit. Three steps to a live site:
 
 ### 1 · Supabase (database + auth)
 
-Create a project at [supabase.com](https://supabase.com), then:
-
-```bash
-cd website
-cat > .env.local <<'EOF'
-NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=<publishable-key>
-SUPABASE_SECRET_KEY=<secret-key>            # server-side only — never NEXT_PUBLIC
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-EOF
-```
+Create a project at [supabase.com](https://supabase.com), then fill in
+`website/.env.local` (shipped by the scaffold, gitignored — it lists every var the
+app reads with a comment on where to get it).
 
 Apply the starter migrations (chat, notifications, subscriptions):
 
@@ -50,8 +41,8 @@ git push                 # every push to main auto-deploys
 ```
 
 Set the same env vars in the Vercel dashboard (Project → Settings →
-Environment Variables), with `NEXT_PUBLIC_SITE_URL`/`NEXT_PUBLIC_APP_URL`
-pointed at the production domain.
+Environment Variables), with `NEXT_PUBLIC_SITE_URL` pointed at the production
+domain.
 
 ## Building features
 

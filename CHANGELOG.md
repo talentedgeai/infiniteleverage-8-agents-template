@@ -6,6 +6,26 @@ Format: `## [version] — YYYY-MM-DD` with sections Added / Changed / Fixed / Re
 
 ---
 
+## [2.8.4] — 2026-09-06
+
+**One env file, and it is gitignored.** The scaffold no longer ships a committed
+`.env.local.example`.
+
+### Changed
+- **`website/.env.local` replaces `website/.env.local.example`.** The scaffold now ships
+  the annotated var list as `.env.local` itself (empty values, a one-line comment per var
+  saying where to get it), with stubbed sections for Supabase, Vercel, Resend, Anthropic
+  and Stripe; vars the app does not read yet are commented out so CI's stale check passes. A scaffolded project ignores it through its own `.gitignore`
+  (`website/.env.local`) and create-next-app's blanket `.env*`; in this repo the template
+  file is force-tracked, since no root negation can override the scaffold's own ignore rule
+- `il-project` step 9b-ii (the `!.env.local.example` append to `website/.gitignore`) is
+  gone; step 11 now says to fill in `website/.env.local` directly
+- CI's "every `process.env.*` is documented" check reads `.env.local` instead of the example
+- The scaffold `README.md` no longer overwrites `.env.local` with a heredoc that listed
+  two vars nothing reads (`SUPABASE_SECRET_KEY`, `NEXT_PUBLIC_APP_URL`, removed in 2.8.0)
+
+---
+
 ## [2.8.3] — 2026-09-03
 
 **The release checklist is executed, not eyeballed.** Runs 1, 6 (PM half) and 8 were driven
